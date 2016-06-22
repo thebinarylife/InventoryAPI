@@ -23,6 +23,10 @@ public class InventoryManager implements Listener{
 	
 	public InventoryManager(InventoryGUI plugin){
 		this.plugin = plugin;
+		invs = new ArrayList<>();
+		events = new ArrayList<>();
+		invEvents = new HashMap<>();
+		
 		
 		this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
