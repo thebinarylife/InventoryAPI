@@ -1,0 +1,4 @@
+name: InventoryAPI
+main: us.legioncraft.inventorygui.InventoryGUI
+version: Beta
+author: TheMindWreck
