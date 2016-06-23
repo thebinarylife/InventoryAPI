@@ -1,4 +1,4 @@
-InventoryGUI
+InventoryAPI
 ============
 Created by TheBinaryLife
 
