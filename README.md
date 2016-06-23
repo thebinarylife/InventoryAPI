@@ -1,6 +1,6 @@
 InventoryGUI
 ============
-Created by TheMindWreck
+Created by TheBinaryLife
 
 Setup
 ===
