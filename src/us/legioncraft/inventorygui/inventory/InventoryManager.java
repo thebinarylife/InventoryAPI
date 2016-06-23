@@ -17,24 +17,23 @@ public class InventoryManager implements Listener{
 	public InventoryManager() {};
 	
 	private InventoryGUI plugin;
-	private ArrayList<GUI> invs;
-	private ArrayList<InvEvent> events;
-	private HashMap<GUI, InvEvent> invEvents;
+	private ArrayList<GUI> invs = new ArrayList<>();
+	private ArrayList<InvEvent> events = new ArrayList<>();
+	private HashMap<GUI, ArrayList<InvEvent>> invEvents = new HashMap<>();
 	
 	public InventoryManager(InventoryGUI plugin){
 		this.plugin = plugin;
-		invs = new ArrayList<>();
-		events = new ArrayList<>();
-		invEvents = new HashMap<>();
-		
 		
 		this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
 	
-	public void addGUI(GUI inv, InvEvent event){
+	public void addGUI(GUI inv){
 		invs.add(inv);
-		events.add(event);
-		invEvents.put(inv, event);
+		invEvents.put(inv, inv.getEvents());
+		
+		for(InvEvent event : inv.getEvents()){
+			events.add(event);
+		}
 	}
 
 	public GUI getInventory(String name){
@@ -50,7 +49,7 @@ public class InventoryManager implements Listener{
 		return instance;
 	}
 	
-	public InvEvent getInventoryEvent(GUI inv){
+	public ArrayList<InvEvent> getInventoryEvents(GUI inv){
 		if(invEvents.containsKey(inv)){
 			return invEvents.get(inv);
 		}
@@ -66,15 +65,21 @@ public class InventoryManager implements Listener{
 		return events;
 	}
 	
-	public HashMap<GUI, InvEvent> getCorrespondents(){
-		return invEvents;
-	}
+//	public HashMap<GUI, InvEvent> getCorrespondents(){
+//		return invEvents;
+//	}
 	
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event){
 		for (GUI inv : invs){
 			if(inv.getInventory() == event.getInventory()){
-				invEvents.get(inv).react(event.getCurrentItem(),(Player) event.getWhoClicked(), event.getSlot());
+				for(InvEvent invEvent : invEvents.get(inv)){
+					if(event.getSlot() == invEvent.getSlot()){
+						invEvent.react(event, event.getCurrentItem(), (Player) event.getWhoClicked());
+						System.out.println("hi");
+					}
+				}
+				// invEvents.get(inv).react(event, event.getCurrentItem(),(Player) event.getWhoClicked(), event.getSlot());
 			}
 		}
 	}
