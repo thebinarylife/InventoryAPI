@@ -5,9 +5,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import us.legioncraft.inventorygui.inventory.InventoryManager;
 
 public class InventoryGUI extends JavaPlugin{
-
+	private static InventoryManager manager;
+	
+	
 	public void onEnable(){
-		new InventoryManager(this);
+		manager = new InventoryManager(this);
 	}
 	
+	public static InventoryManager getManager(){
+		return manager;
+	}
 }

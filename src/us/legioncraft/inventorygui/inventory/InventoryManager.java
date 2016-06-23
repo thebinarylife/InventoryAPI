@@ -12,9 +12,6 @@ import us.legioncraft.inventorygui.InventoryGUI;
 import us.legioncraft.inventorygui.inventory.event.InvEvent;
 
 public class InventoryManager implements Listener{
-	private static InventoryManager instance = new InventoryManager();
-	
-	public InventoryManager() {};
 	
 	private InventoryGUI plugin;
 	private ArrayList<GUI> invs = new ArrayList<>();
@@ -45,10 +42,6 @@ public class InventoryManager implements Listener{
 		return null;
 	}
 	
-	public static InventoryManager getInstance(){
-		return instance;
-	}
-	
 	public ArrayList<InvEvent> getInventoryEvents(GUI inv){
 		if(invEvents.containsKey(inv)){
 			return invEvents.get(inv);
@@ -71,10 +64,14 @@ public class InventoryManager implements Listener{
 	
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event){
+		System.out.println(invs.size());
 		for (GUI inv : invs){
+			System.out.println("hi");
 			if(inv.getInventory() == event.getInventory()){
+				System.out.println("2");
 				for(InvEvent invEvent : invEvents.get(inv)){
 					if(event.getSlot() == invEvent.getSlot()){
+						System.out.println("3");
 						invEvent.react(event, event.getCurrentItem(), (Player) event.getWhoClicked());
 						System.out.println("hi");
 					}
