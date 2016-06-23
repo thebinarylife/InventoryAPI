@@ -6,37 +6,22 @@ import org.bukkit.inventory.ItemStack;
 
 public interface InvEvent{
 	
-	// String getName();
-	
-	// String toString();
-	
+	/** @return slot in which the event takes place */
 	int getSlot();
 	
+	/** Called when an action is clicked in the slot specified
+	 * 
+	 * @param event  Bukkit event
+	 * @param stack Item clicked
+	 * @param player Player who clicked the slot
+	 *  
+	 */
 	void react(InventoryClickEvent event, ItemStack stack, Player player);
 	
+	/**
+	 * 
+	 * @return Name of the Inventory the event occurs on
+	 * 
+	 */
 	String getInventoryName();
 }
-
-//public class InvEvent {
-//	private String name;
-//	private String invName;
-//	
-//	public InvEvent(String name, String invName){
-//		this.name = name;
-//		this.invName = invName;
-//	}
-//	
-//	public String getName(){
-//		return name;
-//	}
-//	
-//	public String toString(){
-//		return name;
-//	}
-//	
-//	public String getInventoryName(){
-//		return invName;
-//	}
-//	
-//	public void react(InventoryClickEvent event, ItemStack stack, Player player, int slot){}
-//}
