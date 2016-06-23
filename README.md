@@ -10,4 +10,8 @@ Setup
 4. Create your event in a class that implements `InvEvents`, and add the needed classes.
 5. Run on a server with InventoryGUI on the server as well.
 
+Javadoc
+===
+http://InventoryAPI.BinaryLife.co
+
 Still in testing
