@@ -26,6 +26,8 @@ public class InventoryManager implements Listener{
 	
 	public void addGUI(GUI inv){
 		invs.add(inv);
+		System.out.println(inv.toString());
+		System.out.println(inv.getEvents());
 		invEvents.put(inv, inv.getEvents());
 		
 		for(InvEvent event : inv.getEvents()){
@@ -64,18 +66,21 @@ public class InventoryManager implements Listener{
 	
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event){
-		System.out.println(invs.size());
 		for (GUI inv : invs){
-			System.out.println("hi");
-			if(inv.getInventory() == event.getInventory()){
-				System.out.println("2");
+			if(inv.getInventory().getName() == event.getInventory().getName()){
+				System.out.println("hi");
+				System.out.println(invEvents.size());
 				for(InvEvent invEvent : invEvents.get(inv)){
+					
+					System.out.println("ok???");
 					if(event.getSlot() == invEvent.getSlot()){
 						System.out.println("3");
 						invEvent.react(event, event.getCurrentItem(), (Player) event.getWhoClicked());
 						System.out.println("hi");
 					}
 				}
+				
+				System.out.println("hi");
 				// invEvents.get(inv).react(event, event.getCurrentItem(),(Player) event.getWhoClicked(), event.getSlot());
 			}
 		}
