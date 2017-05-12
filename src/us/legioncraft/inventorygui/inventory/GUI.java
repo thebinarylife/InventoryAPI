@@ -74,10 +74,7 @@ public class GUI {
 		
 	/** Adds items to inventory */
 	public void addItems(){
-		System.out.println(items.keySet());
-		System.out.println(items.values());
 		for(int i : items.keySet()){
-			System.out.println(items.get(i).getType().toString());
 			inv.setItem(i, items.get(i));
 		}
 	}
