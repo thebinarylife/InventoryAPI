@@ -38,8 +38,6 @@ public class InventoryManager implements Listener{
 	 */
 	public void addGUI(GUI inv){
 		invs.add(inv);
-		System.out.println(inv.toString());
-		System.out.println(inv.getEvents());
 		invEvents.put(inv, inv.getEvents());
 		
 		for(InvEvent event : inv.getEvents()){
